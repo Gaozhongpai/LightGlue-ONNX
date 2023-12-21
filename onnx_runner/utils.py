@@ -67,6 +67,18 @@ def load_image(
         img, scales = resize_image(img, resize, fn=fn, interp=interp)
     return normalize_image(img)[None].astype(np.float32), np.asarray(scales)
 
+def load_image_v2(
+    img: np.ndarray,
+    resize: int = None,
+    fn: str = "max",
+    interp: str = "area",
+):
+
+    scales = [1, 1]
+    if resize is not None:
+        img, scales = resize_image(img, resize, fn=fn, interp=interp)
+    return normalize_image(img)[None].astype(np.float32), np.asarray(scales)
+
 
 def rgb_to_grayscale(image: np.ndarray) -> np.ndarray:
     """Convert an RGB image to grayscale."""
